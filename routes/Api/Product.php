@@ -21,7 +21,7 @@ Route::middleware('auth')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => 'api'], function () {
+Route::group(['middleware' => ['api', 'cors']], function () {
     Route::prefix('/cart')->group(function () {
         Route::post('add/{product}', [CartController::class, 'add']);
         Route::post('delete/{product}', [CartController::class, 'delete']);

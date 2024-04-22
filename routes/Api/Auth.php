@@ -21,7 +21,7 @@ Route::middleware('auth')->get('/user', function (Request $request) {
 
 
 
-Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
+Route::group(['middleware' => ['api', 'cors'], 'prefix' => 'auth'], function () {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('register', [AuthController::class, 'register']);
@@ -31,7 +31,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
 });
 
 
-Route::group(['middleware' => 'api'], function () {
+Route::group(['middleware' => ['api', 'cors']], function () {
 
     Route::prefix('password/')->group(function () {
         Route::post('forgot', [AuthController::class, 'forgetPassword']);
